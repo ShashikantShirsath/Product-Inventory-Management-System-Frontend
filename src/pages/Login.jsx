@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { TailSpin  } from "react-loader-spinner";
+import { TailSpin } from "react-loader-spinner";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
@@ -50,18 +50,18 @@ const Login = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            validateForm();
+            if(!validateForm()) return;
             const res = await axios.post("/auth/login", user);
-            
+
             console.log(res);
-            if(res?.status === 200) {
+            if (res?.status === 200) {
                 toast.success("Login successfully");
             }
 
             login(res?.data?.token, res?.data?.user)
             navigate("/");
         } catch (error) {
-            if(error.response) {
+            if (error.response) {
                 const message = error.response.data?.message || "Login Failed";
                 toast.error(message);
             } else {
@@ -75,23 +75,23 @@ const Login = () => {
 
     return (
         <section className="min-h-screen flex items-center justify-center bg-gray-200">
-            <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-                <h2 className="text-2xl font-bold text-center mb-6">
+            <div className="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm">
+                <h2 className="text-lg font-semibold text-center mb-4 text-gray-800">
                     Inventory Login
                 </h2>
 
-                <form onSubmit={handleLogin} className="space-y-4">
+                <form onSubmit={handleLogin} className="space-y-3">
                     <div>
                         <input
                             type="email"
-                            placeholder="Email"
-                            className={`w-full p-3 border rounded-lg focus:outline-dark focus:ring-2 focus:ring-blue-500 ${formErrors.email ? "border-red-500" : ""}`}
+                            placeholder="Email address"
+                            className={`w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${formErrors.email ? "border-red-500" : "border-gray-300"}`}
                             onChange={handleChange}
                             name="email"
                             value={user.email}
                         />
                         {formErrors.email && (
-                            <p className="text-red-500 text-sm mt-1">
+                            <p className="text-red-500 text-xs mt-1">
                                 Please enter a valid email
                             </p>
                         )}
@@ -101,13 +101,13 @@ const Login = () => {
                         <input
                             type="password"
                             placeholder="Password"
-                            className={`w-full p-3 border rounded-lg focus:outline-dark focus:ring-2 focus:ring-blue-500 ${formErrors.password ? "border-red-500" : ""}`}
+                            className={`w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${formErrors.password ? "border-red-500" : "border-gray-300"}`}
                             onChange={handleChange}
                             name="password"
                             value={user.password}
                         />
                         {formErrors.password && (
-                            <p className="text-red-500 text-sm mt-1">
+                            <p className="text-red-500 text-xs mt-1">
                                 Please enter a valid password
                             </p>
                         )}
@@ -115,15 +115,12 @@ const Login = () => {
 
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition hover:cursor-pointer flex items-center justify-center gap-2"
+                        className="w-full bg-blue-600 text-white text-sm py-2 rounded-lg hover:bg-blue-700 transition hover:cursor-pointer flex items-center justify-center gap-2"
                     >
-                        { isLoading && 
-                            <TailSpin 
-                                height="20"
-                                width="20"
-                                color="#ffffff"
-                            />
-                        } Login
+                        {isLoading && (
+                            <TailSpin height="16" width="16" color="#ffffff" />
+                        )}
+                        Login
                     </button>
                 </form>
             </div>
