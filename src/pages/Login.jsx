@@ -53,14 +53,20 @@ const Login = () => {
             validateForm();
             const res = await axios.post("/auth/login", user);
             
+            console.log(res);
             if(res?.status === 200) {
                 toast.success("Login successfully");
             }
 
             login(res?.data?.token, res?.data?.user)
-            navigate("/products");
+            navigate("/");
         } catch (error) {
-            toast.error("Something went wrong while login");
+            if(error.response) {
+                const message = error.response.data?.message || "Login Failed";
+                toast.error(message);
+            } else {
+                toast.error("Something went wrong while login");
+            }
             console.error(error);
         } finally {
             setIsLoading(false);
