@@ -9,6 +9,11 @@ It connects to a Node.js + Express backend API and uses JWT-based authentication
 
 ---
 
+## Live Project Link
+- https://melodious-shortbread-38cb21.netlify.app/
+
+---
+
 ## Technology Stack
 
 - React (Vite)
