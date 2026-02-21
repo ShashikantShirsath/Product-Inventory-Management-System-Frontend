@@ -1,16 +1,46 @@
-# React + Vite
+# Inventory Management System - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Description
 
-Currently, two official plugins are available:
+This is the frontend of the Inventory Management System built using React (Vite).  
+The application allows users to manage products with features like authentication, product creation, editing, deletion, filtering, sorting, and low stock alerts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+It connects to a Node.js + Express backend API and uses JWT-based authentication.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technology Stack
 
-## Expanding the ESLint configuration
+- React (Vite)
+- React Router DOM
+- Axios
+- Tailwind CSS
+- React Toastify
+- React Loader Spinner
+- Context API (Authentication)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Features Implemented
+
+- User Login Authentication (JWT based)
+- Create Product
+- Edit Product
+- Delete Product
+- Search with Debouncing
+- Filter by Category
+- Sort by Price (Low → High / High → Low)
+- Low Stock Visual Indicators (Quantity < 10)
+- Responsive UI Design
+- Protected Routes
+- API Integration using Axios Interceptors
+
+---
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- Backend server running
+- MongoDB Atlas (or local MongoDB)
