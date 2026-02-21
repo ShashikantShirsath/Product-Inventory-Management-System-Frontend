@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosUrl = axios.create({
-  baseURL: "http://localhost:3653/api",
+  baseURL: import.meta.env.VITE_API_BASE_URL,
 });
 
 // frontend middleware
