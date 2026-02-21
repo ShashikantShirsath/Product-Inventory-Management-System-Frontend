@@ -18,6 +18,7 @@ const Products = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Inventory"
     fetchProducts();
   }, [filter.category, filter.sort, filter.search]);
 
