@@ -4,9 +4,11 @@ import { Navigate } from 'react-router-dom';
 
 const PublicRoute = ({ children }) => {
 
-    const { isAuthenticated } = useContext(AuthContext);
-    console.log(isAuthenticated);
-    if(isAuthenticated && window.location.href.includes("/login")) {
+    const { isAuthenticated, loading } = useContext(AuthContext);
+
+    if (loading) return null; 
+
+    if(isAuthenticated) {
         return <Navigate to={"/"} replace />
     }
 
