@@ -16,6 +16,7 @@ const Products = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
+  const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     document.title = "Inventory"
@@ -164,8 +165,8 @@ const Products = () => {
                 <div className="mt-3 flex justify-between items-center">
                   <span
                     className={`px-2 py-0.5 text-xs rounded-full font-medium ${product.quantity < 10
-                        ? "bg-red-100 text-red-600"
-                        : "bg-green-100 text-green-600"
+                      ? "bg-red-100 text-red-600"
+                      : "bg-green-100 text-green-600"
                       }`}
                   >
                     {product.quantity < 10
@@ -175,22 +176,23 @@ const Products = () => {
 
                   <span className="text-xs text-gray-400">{product.category}</span>
                 </div>
+                {isAuthenticated &&
+                  <div className="mt-3 flex justify-between items-center">
+                    <button
+                      onClick={() => navigate(`/edit/${product._id}`)}
+                      className="text-blue-600 text-xs bg-blue-50 px-3 py-1.5 rounded-md hover:bg-blue-100 hover:cursor-pointer transition"
+                    >
+                      Edit
+                    </button>
 
-                <div className="mt-3 flex justify-between items-center">
-                  <button
-                    onClick={() => navigate(`/edit/${product._id}`)}
-                    className="text-blue-600 text-xs bg-blue-50 px-3 py-1.5 rounded-md hover:bg-blue-100 hover:cursor-pointer transition"
-                  >
-                    Edit
-                  </button>
-
-                  <button
-                    onClick={() => handleDelete(product._id)}
-                    className="text-red-600 text-xs bg-red-50 px-3 py-1.5 rounded-md hover:bg-red-100 hover:cursor-pointer transition"
-                  >
-                    Delete
-                  </button>
-                </div>
+                    <button
+                      onClick={() => handleDelete(product._id)}
+                      className="text-red-600 text-xs bg-red-50 px-3 py-1.5 rounded-md hover:bg-red-100 hover:cursor-pointer transition"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                }
               </div>
             ))}
           </div>
